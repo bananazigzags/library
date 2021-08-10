@@ -1,0 +1,16 @@
+button {
+    margin: 20px;
+}
+
+table, th, td {
+    margin-top: 20px;
+}
+
+th {
+    font-size: 20px;
+}
+
+tr {
+    height: 50px;
+    vertical-align: middle;
+}
