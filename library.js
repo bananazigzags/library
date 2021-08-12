@@ -12,7 +12,7 @@ Book.prototype.info = function() {
     if (this.statusRead) {
         readReport = 'read';
     } else readReport = 'not read yet';
-    return `${this.title} by ${this.author}, ${this.numPages}, ${this.statusRead}`;
+    return `${this.title} by ${this.author}, ${this.numPages}, ${readReport}`;
 }
 
 function addBookToLibrary(title, author, numPages, statusRead) {
@@ -23,16 +23,19 @@ const bookElem = document.querySelector("tbody");
 
 function displayLibrary() {
     myLibrary.forEach((book) => {
-        const tr = document.createElement('tr');
-        bookElem.appendChild(tr);
-        const td = document.createElement('td');
-        td.textContent = book.info();
-        tr.appendChild(td);
+        addBookToDisplay(book);
     });   
 };
 
+function addBookToDisplay(book) {
+    const tr = document.createElement('tr');
+    bookElem.appendChild(tr);
+    const td = document.createElement('td');
+    td.textContent = book.info();
+    tr.appendChild(td);
+}
+
 const form = document.getElementById("form");
-console.log(form);
 
 const newBook = document.getElementById("new-book");
 newBook.addEventListener('click', () => {
@@ -44,15 +47,29 @@ formX.addEventListener('click', () => {
     form.classList.add("hidden");
 });
 
-// $('#new-book').on('click', function () {
-//     $('.center').show();
-// })
+const buttonSubmit = document.getElementById("submit");
+buttonSubmit.addEventListener('click', () => {
+    form.classList.add("hidden");
+});
 
-// $('#close').on('click', function () {
-//     $('.center').hide();
-// })
+function processForm() {
+    const title = document.getElementById("title-form");
+    const author = document.getElementById("author-form");
+    const numPages = document.getElementById("num-pages-form");
+    const readStatus = document.getElementById("read-status-form");
+    let read;
+    if (readStatus.checked) {
+        read = true;
+    } else read = false;
+    addBookToLibrary(title.value, author.value, numPages.value, read);
+    const book = new Book(title.value, author.value, numPages.value, read);
+    addBookToDisplay(book);
+    title.value = "";
+    author.value = "";
+    numPages.value = null;
+    readStatus.value = "on";
+}
 
 addBookToLibrary("Walden", "Thoreau", 240, true);
-addBookToLibrary("Some book", "Some author", 240, false);
-console.log(myLibrary[0].info());
+addBookToLibrary("The Master and Margarita", "Bulgakov", 384, false);
 displayLibrary();

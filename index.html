@@ -14,16 +14,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <div class="form hidden" id="form">
         <button id="close" style="float: right;">X</button>
-        <form>
-            Title:<input type="text" name="firstname" placeholder="Walden">
+        <form action="#" onsubmit="processForm();return false">
+            Title:<input type="text" id="title-form" name="title" placeholder="Walden">
             <br>
-            Author:<input type="text" name="lastname" placeholder="Thoreau, Henry David">
+            Author:<input type="text" id="author-form" name="author" placeholder="Thoreau, Henry David">
             <br>
-            Number of pages:<input type="numbmer" name="num-pages" placeholder=206>
+            Number of pages:<input type="number" id="num-pages-form" name="num-pages" placeholder=206>
             <br>
-            Read? <input type="checkbox" name="read" checked>
+            Read? <input type="checkbox" id="read-status-form" name="read" checked>
             <br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" id="submit">
         </form>
     </div>
     <button class="btn btn-primary" id="new-book">NEW BOOK</button>   
