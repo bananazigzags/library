@@ -31,6 +31,26 @@ function displayLibrary() {
     });   
 };
 
+const form = document.getElementById("form");
+console.log(form);
+
+const newBook = document.getElementById("new-book");
+newBook.addEventListener('click', () => {
+    form.classList.remove("hidden");
+});
+
+const formX = document.getElementById("close");
+formX.addEventListener('click', () => {
+    form.classList.add("hidden");
+});
+
+// $('#new-book').on('click', function () {
+//     $('.center').show();
+// })
+
+// $('#close').on('click', function () {
+//     $('.center').hide();
+// })
 
 addBookToLibrary("Walden", "Thoreau", 240, true);
 addBookToLibrary("Some book", "Some author", 240, false);

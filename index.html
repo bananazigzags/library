@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="library.js" defer></script> 
+    <script src="library.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,22 @@
     <title>Document</title>
 </head>
 <body>
-    <button class="btn btn-primary">NEW BOOK</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <div class="form hidden" id="form">
+        <button id="close" style="float: right;">X</button>
+        <form>
+            Title:<input type="text" name="firstname" placeholder="Walden">
+            <br>
+            Author:<input type="text" name="lastname" placeholder="Thoreau, Henry David">
+            <br>
+            Number of pages:<input type="numbmer" name="num-pages" placeholder=206>
+            <br>
+            Read? <input type="checkbox" name="read" checked>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <button class="btn btn-primary" id="new-book">NEW BOOK</button>   
     <table id="booklist" class="table table-hover table-dark">
         <thead>
             <th>BOOKS</th>
