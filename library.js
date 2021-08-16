@@ -32,7 +32,13 @@ function addBookToDisplay(book) {
     bookElem.appendChild(tr);
     const td = document.createElement('td');
     td.textContent = book.info();
+    const icon = document.createElement('span');
+    icon.classList.add('fas', 'fa-trash', 'fa-lg', 'align-bottom');
+    icon.addEventListener('click', () => {
+        alert("hi");
+    });
     tr.appendChild(td);
+    tr.appendChild(icon);
 }
 
 const form = document.getElementById("form");
