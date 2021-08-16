@@ -1,21 +1,16 @@
 button {
     margin: 10px;
+    background-color: white;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5%;
 }
 
-table, th, td {
-
+body {
+    background: rgb(183, 241, 217);
 }
 
-th {
-    font-size: 20px;
-}
-
-tr {
-    height: 50px;
-    vertical-align: middle;
-}
-
-td {
+th, td {
     font-size: 20px;
 }
 
