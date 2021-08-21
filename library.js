@@ -1,18 +1,22 @@
 let myLibrary = [];
 
-function Book(title, author, numPages, statusRead) {
-    this.title = title;
-    this.author = author;
-    this.numPages = numPages;
-    this.statusRead = statusRead;
-}
+class Book {
 
-Book.prototype.info = function() {
-    let readReport = '';
-    if (this.statusRead) {
-        readReport = 'read';
-    } else readReport = 'not read yet';
-    return `${this.title} by ${this.author}, ${this.numPages} pages`;
+    constructor(title, author, numPages, statusRead) {
+        this.title = title;
+        this.author = author;
+        this.numPages = numPages;
+        this.statusRead = statusRead;
+    }
+
+    info() {
+        let readReport = '';
+        if (this.statusRead) {
+            readReport = 'read';
+        } else readReport = 'not read yet';
+        return `${this.title} by ${this.author}, ${this.numPages} pages`;
+    }
+
 }
 
 function addBookToLibrary(title, author, numPages, statusRead) {
