@@ -16,15 +16,18 @@
     <script src="https://kit.fontawesome.com/a0f3616379.js" crossorigin="anonymous"></script>
     <div class="form hidden" id="form">
         <button id="close" style="float: right;">X</button>
-        <form action="#" onsubmit="processForm();return false">
-            Title:<input type="text" id="title-form" name="title" placeholder="Walden">
+        <form>
+            Title:<input type="text" id="title-form" name="title" placeholder="Walden" required>
+            <span class="error" aria-live="polite"></span>
             <br>
-            Author:<input type="text" id="author-form" name="author" placeholder="Thoreau, Henry David">
+            Author:<input type="text" id="author-form" name="author" placeholder="Thoreau, Henry David" required>
             <br>
-            Number of pages:<input type="number" min = "0" id="num-pages-form" name="num-pages" placeholder=206>
+            Number of pages:<input type="number" min = "0" id="num-pages-form" name="num-pages" placeholder=206 required>
             <br>
             Read? <input type="checkbox" id="read-status-form" name="read" checked>
             <br><br>
+            * All fields are required
+            <br>
             <input type="submit" value="Submit" id="submit">
         </form>
     </div>

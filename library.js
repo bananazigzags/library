@@ -10,26 +10,9 @@ class Book {
     }
 
     info() {
-        let readReport = '';
-        if (this.statusRead) {
-            readReport = 'read';
-        } else readReport = 'not read yet';
         return `${this.title} by ${this.author}, ${this.numPages} pages`;
     }
 
-}
-
-function addBookToLibrary(title, author, numPages, statusRead) {
-    myLibrary.push(new Book(title, author, numPages, statusRead));
-    displayLibrary();
-}
-
-function toggleRead(id) {
-    if (myLibrary[id].statusRead == true) {
-        myLibrary[id].statusRead = false;
-    } else {
-        myLibrary[id].statusRead = true;
-    }
 }
 
 const bookElem = document.querySelector("tbody");
@@ -72,15 +55,47 @@ function displayLibrary() {
         td.appendChild(toggle);
         td.appendChild(icon);
         tr.appendChild(td);
-        bookNum += 1;        
-    });   
-};
+        bookNum += 1;
+    });
+}
+
+function addBookToLibrary(title, author, numPages, statusRead) {
+    myLibrary.push(new Book(title, author, numPages, statusRead));
+    displayLibrary();
+}
+
+function toggleRead(id) {
+    if (myLibrary[id].statusRead == true) {
+        myLibrary[id].statusRead = false;
+    } else {
+        myLibrary[id].statusRead = true;
+    }
+}
 
 function removeBook(id) {
     const bookRow = document.getElementById(id);
     bookRow.parentNode.removeChild(bookRow);
     myLibrary.splice(id, 1);
     bookNum -= 1;
+}
+
+function processForm() {
+
+    const title = document.getElementById("title-form");
+    const author = document.getElementById("author-form");
+    const numPages = document.getElementById("num-pages-form");
+    const readStatus = document.getElementById("read-status-form");
+
+    let read;
+    if (readStatus.checked) {
+        read = true;
+    } else read = false;
+
+    addBookToLibrary(title.value, author.value, numPages.value, read);
+    title.value = "";
+    author.value = "";
+    numPages.value = null;
+    readStatus.value = "on";
 }
 
 const form = document.getElementById("form");
@@ -95,29 +110,11 @@ formX.addEventListener('click', () => {
     form.classList.add("hidden");
 });
 
-const buttonSubmit = document.getElementById("submit");
-buttonSubmit.addEventListener('click', () => {
+form.addEventListener('submit', function() {
+    processForm();
     form.classList.add("hidden");
-});
+})
 
-function processForm() {
-    const title = document.getElementById("title-form");
-    const author = document.getElementById("author-form");
-    const numPages = document.getElementById("num-pages-form");
-    const readStatus = document.getElementById("read-status-form");
-
-    let read;
-    if (readStatus.checked) {
-        read = true;
-    } else read = false;
-
-    const book = new Book(title.value, author.value, numPages.value, read);
-    addBookToLibrary(title.value, author.value, numPages.value, read);
-    title.value = "";
-    author.value = "";
-    numPages.value = null;
-    readStatus.value = "on";
-}
 
 addBookToLibrary("Walden", "Thoreau", 240, true);
 addBookToLibrary("The Master and Margarita", "Bulgakov", 384, false);
