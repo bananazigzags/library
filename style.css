@@ -34,7 +34,7 @@ th, td {
     display: none;
 }
 
-input {
+.text-input {
     margin: 5px;
     width: 80%;
     max-width: fit-content;

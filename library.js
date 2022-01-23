@@ -10,7 +10,7 @@ class Book {
     }
 
     info() {
-        return `${this.title} by ${this.author}, ${this.numPages} pages`;
+        return `${this.title} by ${this.author}, ${this.numPages} pages `;
     }
 
 }
