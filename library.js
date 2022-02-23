@@ -1,4 +1,6 @@
 let myLibrary = [];
+let bookNum;
+let bookElem = document.querySelector("tbody");
 
 class Book {
 
@@ -13,11 +15,22 @@ class Book {
         return `${this.title} by ${this.author}, ${this.numPages} pages `;
     }
 
+    static fromJSON(obj) {
+        return Object.assign(new Book(), obj);
+    }
+
 }
 
-const bookElem = document.querySelector("tbody");
+if (localStorage.getItem('savedLibrary')) {
+    myLibrary = JSON.parse(localStorage.getItem('savedLibrary'));
+    myLibrary = myLibrary.map(book => Book.fromJSON(book));
+    console.log(myLibrary);
+    displayLibrary();
+}
 
-let bookNum;
+function populateStorage() {
+    localStorage.setItem('savedLibrary', JSON.stringify(myLibrary));
+}
 
 function displayLibrary() {
     bookNum = 0;
@@ -60,7 +73,9 @@ function displayLibrary() {
 }
 
 function addBookToLibrary(title, author, numPages, statusRead) {
-    myLibrary.push(new Book(title, author, numPages, statusRead));
+    let book = new Book(title, author, numPages, statusRead);
+    myLibrary.push(book);
+    populateStorage();
     displayLibrary();
 }
 
@@ -70,6 +85,7 @@ function toggleRead(id) {
     } else {
         myLibrary[id].statusRead = true;
     }
+    populateStorage();
 }
 
 function removeBook(id) {
@@ -77,6 +93,7 @@ function removeBook(id) {
     bookRow.parentNode.removeChild(bookRow);
     myLibrary.splice(id, 1);
     bookNum -= 1;
+    populateStorage();
 }
 
 function processForm() {
@@ -115,7 +132,8 @@ form.addEventListener('submit', function() {
     form.classList.add("hidden");
 })
 
-
-addBookToLibrary("Walden", "Thoreau", 240, true);
-addBookToLibrary("The Master and Margarita", "Bulgakov", 384, false);
-addBookToLibrary("Teenage Mutant Ninja Turtles: The Ultimate Collection Volume 1", "Kevin Eastman, Peter Laird, Michael Dooney", 320, false);
+if (!localStorage.getItem('savedLibrary')) {
+    addBookToLibrary("Walden", "Thoreau", 240, true);
+    addBookToLibrary("The Master and Margarita", "Bulgakov", 384, false);
+    addBookToLibrary("Teenage Mutant Ninja Turtles: The Ultimate Collection Volume 1", "Kevin Eastman, Peter Laird, Michael Dooney", 320, false);
+}
